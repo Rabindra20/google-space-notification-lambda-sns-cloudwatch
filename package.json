@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "googleapis": "^72.0.0"
+  }
+}
