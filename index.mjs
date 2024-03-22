@@ -9,6 +9,7 @@ export async function handler(event, context) {
     const alarmName = message.AlarmName || 'N/A';
     const newState = message.NewStateValue || 'N/A';
     const reason = message.NewStateReason || 'N/A';
+    const dimensions = message.Trigger.Dimensions.map(dimension => `${dimension.name}: ${dimension.value}`).join(', ') || 'N/A';
 
     // Create format for Slack message
     // const slackMessage = {
@@ -25,14 +26,14 @@ export async function handler(event, context) {
           header: {
             title: `Alarm: ${alarmName}`,
             subtitle: `State: ${newState}`,
-            imageUrl: 'https://example.com/image.png',
+            imageUrl: 'https://developers.google.com/chat/images/quickstart-app-avatar.png',
           },
           sections: [
             {
               widgets: [
                 {
                   textParagraph: {
-                    text: `Reason: ${reason}`,
+                    text: `Reason: ${reason},\n Name: ${dimensions}`,
                   },
                 },
               ],
